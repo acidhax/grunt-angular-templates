@@ -24,7 +24,7 @@ module.exports = function(grunt) {
       bootstrap:  bootstrapper,
       concat:     null,
       htmlmin:    {},
-      module:     this.target,
+      module:     "app",
       prefix:     '',
       source:     function(source) { return source; },
       standalone: false,
@@ -39,6 +39,7 @@ module.exports = function(grunt) {
       if (!file.src.length) {
         grunt.log.warn('No templates found');
       }
+      options.module = file.module;
 
       var compiler  = new Compiler(grunt, options, file.cwd);
       var appender  = new Appender(grunt);

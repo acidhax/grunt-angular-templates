@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       if (!file.src.length) {
         grunt.log.warn('No templates found');
       }
-      options.module = file.module;
+      options.module = file.module || options.module;
 
       var compiler  = new Compiler(grunt, options, file.cwd);
       var appender  = new Appender(grunt);

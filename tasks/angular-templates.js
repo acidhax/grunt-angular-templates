@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       }
       options.module = file.module || options.module;
       var cwd = options.cwd  || file.cwd;
-      console.log("Options CWD:", options.cwd);
+      console.log("Options CWD:", grunt.options('cwd'));
       var compiler  = new Compiler(grunt, options, cwd);
       var appender  = new Appender(grunt);
       var modules   = compiler.modules(file.src);

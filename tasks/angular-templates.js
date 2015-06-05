@@ -52,11 +52,11 @@ module.exports = function(grunt) {
       }
 
       if (options.append){
-        fs.appendFileSync(file.dest, compiled.join('\n'));
+        fs.appendFileSync(path.join(cwd, file.dest), compiled.join('\n'));
         grunt.log.writeln('File ' + file.dest.cyan + ' updated.');
       }
       else{
-        grunt.file.write(file.dest, compiled.join('\n'));  
+        grunt.file.write(path.join(cwd, file.dest), compiled.join('\n'));  
         grunt.log.writeln('File ' + file.dest.cyan + ' created.');
       }
       

@@ -40,8 +40,9 @@ module.exports = function(grunt) {
         grunt.log.warn('No templates found');
       }
       options.module = file.module || options.module;
-
-      var compiler  = new Compiler(grunt, options, file.cwd);
+      var cwd = options.cwd  || file.cwd;
+      console.log("Options CWD:", options.cwd);
+      var compiler  = new Compiler(grunt, options, cwd);
       var appender  = new Appender(grunt);
       var modules   = compiler.modules(file.src);
       var compiled  = [];

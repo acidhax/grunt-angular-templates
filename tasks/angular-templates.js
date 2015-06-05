@@ -34,17 +34,17 @@ module.exports = function(grunt) {
     });
 
     grunt.verbose.writeflags(options, 'Options');
-
     this.files.forEach(function(file) {
-      if (!file.src.length) {
+      if (!file.orig.src.length) {
         grunt.log.warn('No templates found');
       }
-      options.module = file.module || options.module;
-      var cwd = grunt.option('cwd')  || file.cwd;
-      console.log("CWD:", cwd);
+      options.module = grunt.option("module") || file.module || options.module;
+      var cwd = grunt.option('srccwd')  || file.cwd;
+      var destcwd = grunt.option('destcwd')  || file.destcwd;
+      console.log("CWD:", cwd, destcwd);
       var compiler  = new Compiler(grunt, options, cwd);
       var appender  = new Appender(grunt);
-      var modules   = compiler.modules(file.src);
+      var modules   = compiler.modules(file.orig.src);
       var compiled  = [];
 
       for (var module in modules) {
@@ -52,11 +52,11 @@ module.exports = function(grunt) {
       }
 
       if (options.append){
-        fs.appendFileSync(path.join(cwd, file.dest), compiled.join('\n'));
+        fs.appendFileSync(path.join(destcwd, file.dest), compiled.join('\n'));
         grunt.log.writeln('File ' + file.dest.cyan + ' updated.');
       }
       else{
-        grunt.file.write(path.join(cwd, file.dest), compiled.join('\n'));  
+        grunt.file.write(path.join(destcwd, file.dest), compiled.join('\n'));  
         grunt.log.writeln('File ' + file.dest.cyan + ' created.');
       }
       

@@ -57,9 +57,9 @@ var Compiler = function(grunt, options, cwd) {
    * @return {String}         Final template aggregate script
    */
   this.compile = function(module, files) {
-    var paths = files.map(this.path).filter(function(path) {
-      if (!grunt.file.exists(path)) {
-        grunt.log.warn('Template "' + path + '" not found.');
+    var paths = files.map(this.path).filter(function(obj) {
+      if (!grunt.file.exists(obj.path || obj)) {
+        grunt.log.warn('Template "' + obj + '" not found.');
         return false;
       }
 

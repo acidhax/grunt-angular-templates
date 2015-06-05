@@ -11,7 +11,7 @@
 var Compiler  = require('./lib/compiler');
 var Appender  = require('./lib/appender');
 var fs        = require('fs');
-
+var path = require('path');
 module.exports = function(grunt) {
 
   var bootstrapper = function(module, script, options) {
